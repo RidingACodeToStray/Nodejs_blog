@@ -1,0 +1,105 @@
+ html,body,ul {
+ 	margin: 0;
+ 	padding: 0;
+ }
+ ul {
+	list-style: none;
+}
+
+.hide {
+	display: none;
+}
+.show {
+	display: block;
+}
+.wrap {
+	width: 100%;
+}
+.header {
+	height: 50px;
+	background-color: #eae3e3;
+	box-shadow: 5px 5px 5px #c3baba;
+}
+.header > ul {
+	text-align: center;
+	line-height: 50px;
+}
+.header > ul > li{
+	display: inline-block;
+	font-size: 20px;
+	margin: 0 20px;
+}
+.header a {
+	text-decoration-line: none;
+}
+
+.body {
+	background-color: #fff;
+	margin-top: 30px;
+	width: 100%;
+	text-align: center;
+}
+.cont {
+	display: inline-block;
+	width: 500px;
+	vertical-align: top;
+}
+.cont li {
+	margin-bottom: 20px;
+	background-color: #eae3e3;
+	padding: 20px;
+	box-shadow: 5px 5px 5px #c3baba;
+}
+.info {
+	display: inline-block;
+	width: 200px;
+
+}
+.info > div {
+	box-shadow: 5px 5px 5px #c3baba;
+	background-color: #eae3e3;
+	padding: 10px;
+	margin-bottom: 20px;
+	text-align: left;
+}
+.infoTitle {
+	margin: 0;
+    border-bottom: 1px solid;
+    text-align: left;
+    font-weight: bold;
+        margin-bottom: 10px;
+}
+.keyWords {
+	margin: 20px 0;
+	text-align: left;
+	font-size: 18px;
+	color: #f70000;
+}
+.readAll {
+	text-align: left;
+}
+.name {
+	text-align: left;
+    margin: 10px 0;
+    color: #f70000;
+    font-size: 18px;
+}
+.inputInfo {
+	margin: 5px 0;
+}
+.inputInfo > input {
+	width: 120px
+}
+.inputInfo > label {
+	display: inline-block;
+	width: 50px;
+}
+.infoBtn {
+	text-align: right;
+}
+.registerRemind,.loginRemind {
+	color: #f70000;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 10px;
+}
