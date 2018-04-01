@@ -1,0 +1,32 @@
+html,body {
+	margin: 0;
+	padding: 0;
+}
+ul.a-header {
+	 background-color: #291b1b38;
+    margin-top: 0;
+    height: 56px;
+    line-height: 56px;
+}
+.a-header > li {
+	display: inline-block;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-weight: bold;
+}
+li.a-item {
+	
+    font-size: 20px;
+}
+li.a-user {
+	float: right;
+    line-height: 56px;
+}
+li.a-user > span {
+	display: inline-block;
+	padding-left: 5px;
+}
+.a-body {
+	width: 100%;
+	text-align: center;
+}
