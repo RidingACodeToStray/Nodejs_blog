@@ -44,7 +44,7 @@ router.get('/user',function(req,res){
 		});	
 	})
 })
-//分类管理
+//分类展示
 router.get('/category',function(req,res){
 	//limit()限制获取的用户条数
 	//skip()忽略数据的查询
