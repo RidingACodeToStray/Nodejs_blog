@@ -28,5 +28,27 @@ li.a-user > span {
 }
 .a-body {
 	width: 100%;
+}
+.a-userNav {
+	padding-left: 50px;
+}
+.a-userTable {
+	    width: 100%;
+    text-indent: 50px;
+    margin-top: 20px;
+}
+.a-userTable th,
+.a-userTable td {
+	margin-right: -2px;
+	border: 1px solid #000;
 	text-align: center;
+}
+.a-page {
+	margin-top: 10px;
+    text-align: right;
+    margin-right: 10px;
+}
+.a-pageInfo {
+	    margin-left: 10px;
+    margin-right: 10px;
 }

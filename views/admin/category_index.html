@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+	<div class="a-userNav">
+		<span><a href="/">管理首页</a></span>
+		<span> / </span>
+		<span>分类列表</span>
+	</div>
+	<div style="padding-left: 50px;text-align: right;margin-right: 10px;">
+		<a href="/admin/category/add">添加分类</a>
+		</div>
+	<table class="a-userTable">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>分类名称</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for category in categories %}
+		<tr>
+			<td>{{category._id.toString()}}</td>
+			<td>{{category.name}}</td>
+			<td>
+					<a href="/admin/category/edit?id={{category._id.toString()}}">修改</a>
+					<a href="/admin/category/delete?id={{category._id.toString()}}">删除</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+	{% include 'page.html' %}
+{% endblock %}

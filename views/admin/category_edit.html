@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+	<div class="a-userNav">
+		<span><a href="/">管理首页</a></span>
+		<span> / </span>
+		<span>分类编辑 - {{category.name}}</span>
+	</div>
+	<form style="padding-left: 50px;margin-top: 20px;" method="post">
+		<div style="display: inline-block;">
+			<label for="name">分类名称:</label>
+			<input type="text" name="name" id="name" value="{{category.name}}">
+		</div>
+		<button type="submit" style="display: inline-block;">提交</button>
+	</form>
+{% endblock %}
