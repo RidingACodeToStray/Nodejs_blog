@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/User');//引入模型类
+var Content = require('../models/Content.js');
 //定义返回变量格式
 var resData; 
 router.use(function(req,res,next){
@@ -101,5 +102,36 @@ router.get('/user/logout',function(req,res){
 	req.cookies.set('userInfo',null);
 	res.json(resData);
 })
-
+//评论提交
+router.post('/comment/post',function(req,res){
+	//内容的id
+	var contentid = req.body.contentid || '';
+	var postData = {
+		username:req.userInfo.username,
+		postTime:new Date(),
+		content:req.body.content
+	}
+	//查询当前这边内容的信息
+	Content.findOne({
+		_id:contentid
+	}).then(function(content){
+		content.comments.push(postData);
+		return content.save();
+	}).then(function(newContent){
+		resData.message = '评论成功';
+		resData.data = newContent,
+		res.json(resData);
+	});
+})
+//获取指定文章的所有评论
+router.get('/comment',function(req,res){
+	//内容的id
+	var contentid = req.query.contentid || '';
+	Content.findOne({
+		_id:contentid
+	}).then(function(content){
+		resData.data = content.comments,
+		res.json(resData);
+	})
+})
 module.exports = router;

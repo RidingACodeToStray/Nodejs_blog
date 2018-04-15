@@ -1,156 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>博客</title>
-	<link rel="stylesheet" type="text/css" href="/public/css/main.css">
-	<script type="text/javascript" src="/public/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="public/js/index.js"></script>
-</head>
-<body>
-	<div class="wrap">
-		<div class="header">
-			<ul>
-				<li><a href="">首页</a></li>
-				{% for category in categories %}
-				<li><a href="/">{{category.name}}</a></li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="body">
-			<div class="cont">
-				<ul>
-					<li>
-						<h2>NodeJS开发web</h2>
-						<div>
-							<span>
-								<span>作者：</span>
-								<a href="">racts</a>
-							</span>
-							<span>
-								<span>时间：</span>
-								<a href="">2018年10月</a>
-							</span>
-							<span>
-								<span>阅读：</span>
-								<a href="">121</a>
-							</span>
-							<span>
-								<span>评论：</span>
-								<a href="">0</a>
-							</span>
-						</div>
-						<div class="keyWords">
-							NodeJs的发展历程
-						</div>
-						<div class="readAll"><button>阅读全文</button></div>
-						
-					</li>
-					<li>
-						<h2>JAVASCRIPT入门经典</h2>
-						<div>
-							<span>
-								<span>作者：</span>
-								<a href="">racts</a>
-							</span>
-							<span>
-								<span>时间：</span>
-								<a href="">2018年12月</a>
-							</span>
-							<span>
-								<span>阅读：</span>
-								<a href="">119</a>
-							</span>
-							<span>
-								<span>评论：</span>
-								<a href="">10</a>
-							</span>
-						</div>
-						<div class="keyWords">
-							JavaScript的发展历程
-						</div>
-						<div class="readAll"><button>阅读全文</button></div>
-					</li>
-				</ul>
-			</div>
-			<div class="info">
-				{% if userInfo._id %}
-				<div class="showInfo">
-					<p class="infoTitle">用户信息</p>
-					<div class="name">{{userInfo.username}}
-					</div>
-					{% if userInfo.isAdmin %}
-					<div class="info">你好管理员，欢迎来到博客
-					<a href="/admin">进入管理</a>
-					</div>
-					{% else %}
-					<div class="info">
-					你好，欢迎来到博客
-					</div>
-					{% endif %}
-					<button class="logout">退出</button>
-				</div>
-				{% else %}
-				<div class="registerInfo">
-					<form>
-						<p class="infoTitle">注册</p>
-						<div class="inputInfo">
-							<label for="user">用户名</label>
-							<input type="text" name="username" id="user">
-						</div>
-						<div class="inputInfo">
-							<label for="pwd">密码</label>
-							<input type="password" name="pwd" id="pwd">
-						</div>
-						<div class="inputInfo">
-							<label for="rpwd">确认</label>
-							<input type="password" name="rpwd" id="rpwd">
-						</div>
-						<div class="infoBtn">
-							<input type="button" name="" value="注册" class="registerBtn">
-						</div>
-						<div class="infoBtn">
-							<span>已有账号</span>
-							<a href="javascript:void(0)" class="toLogin">马上登录</a>
-						</div>
-						<div class="registerRemind"></div>
-					</form>
-				</div>
-				<div class="hide loginInfo">
-					<form>
-						<p class="infoTitle">登录</p>
-						<div class="inputInfo">
-							<label for="user2">用户名</label>
-							<input type="text" name="user2" id="user2">
-						</div>
-						<div class="inputInfo">
-							<label for="pwd2">密码</label>
-							<input type="password" name="pwd2" id="pwd2">
-						</div>
-						<div class="infoBtn">
-							<input type="button" name="" value="登录" class="loginBtn">
-						</div>
-						<div class="infoBtn">
-							<span>还没注册</span>
-							<a href="javascript:void(0)" class="toRegister">马上注册</a>
-						</div>
-						<div class="loginRemind"></div>
-					</form>
-				</div>
-				{% endif %}
-				<div>
-					<p class="infoTitle">社区</p>
-					<ul>
-						<li>
-							<a href="">制度规则</a>
-						</li>
-						<li>
-							<a href="">社区之家</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+{% extends 'layout.html' %} {% block content %}
+<div class="cont">
+    <ul>
+        {% for content in contents %}
+        <li>
+            <h2>{{content.title}}</h2>
+            <div>
+                <span>
+								<span>作者：</span><a href="">{{content.user.username}}</a>
+                </span>
+                <span>
+								<span>时间：</span><a href="">{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</a>
+                </span>
+                <span>
+								<span>阅读：</span><a href="">{{content.views}}</a>
+                </span>
+                <span>
+								<span>评论：</span><a href="">{{content.comments.length}}</a>
+                </span>
+            </div>
+            <div class="keyWords">
+                {{content.desciption}}
+            </div>
+            <div class="readAll">
+                <button>
+                    <a href="/view?contentid={{content.id}}">阅读全文</a>
+                </button>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="a-page">
+        <span>
+						{% if  page <= 1 %}
+							<span>没有上一页</span> {% else %}
+        <a href="?page={{page-1}}&category={{category}}">上一页</a> {% endif %}
+        </span>
+        {% if pages > 0 %}
+        <span class="a-pageInfo">
+							{{page}}/{{pages}}
+						</span> {% endif %}
+        <span>
+						{% if  page >= pages %}
+							<span>没有下一页</span> {% else %}
+        <a href="?page={{page+1}}&category={{category}}">下一页</a> {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

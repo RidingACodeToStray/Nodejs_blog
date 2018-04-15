@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+	<div class="a-userNav">
+		<span><a href="/">管理首页</a></span>
+		<span> / </span>
+		<span>内容修改 - {{content.title}}</span>
+	</div>
+	<form style="padding-left: 50px;margin-top: 20px;" method="post">
+	{{content.category._id.toString()}}
+		<div>
+			<label for="category">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类:</label>
+			<select name="category" id="category" style="width: 200px;">
+				{% for category in categories %}
+					{% if content.category._id.toString() == category._id.toString() %}
+						<option value="{{category.id}}" selected>{{category.name}}</option>
+					{% else %}
+						<option value="{{category.id}}">{{category.name}}</option>
+					{% endif %}
+				{% endfor %}
+			</select>
+		</div>
+		<div>
+			<label for="title">内容标题:</label>
+			<input type="text" name="title" id="title" style="width: 200px;" value="{{content.title}}">
+		</div>
+		<div>
+			<label for="desc">简&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介:</label>
+			<input type="desc" name="desciption" id="desciption" style="width: 200px;" value="{{content.desciption}}">
+		</div>
+		<div>
+			<label for="content" style="vertical-align: top;">内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容:</label>
+			<textarea type="content" name="content" id="content" style="width: 200px;" rows="4">{{content.content}}</textarea>
+		</div>
+		<button type="submit">提交</button>
+	</form>
+{% endblock %}

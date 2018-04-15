@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>博客</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css">
+    <script type="text/javascript" src="/public/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="public/js/index.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+	    <div class="header">
+		    <ul>
+		        {% if category == '' %}
+		        <li><a href="/" class="focus">首页</a></li>
+		        {% else %}
+		        <li><a href="/">首页</a></li>
+		        {% endif %} {% for cate in categories %} {% if category == cate.id %}
+		        <li>
+		            <a href="/?category={{cate.id}}" class="focus">{{cate.name}}</a>
+		        </li>
+		        {% else %}
+		        <li>
+		            <a href="/?category={{cate.id}}">{{cate.name}}</a>
+		        </li>
+		        {% endif %} {% endfor %}
+		    </ul>
+		</div>
+        {% block content %}{% endblock %}
+        <div class="info">
+            {% if userInfo._id %}
+            <div class="showInfo">
+                <p class="infoTitle">用户信息</p>
+                <div class="name">{{userInfo.username}}
+                </div>
+                {% if userInfo.isAdmin %}
+                <div class="info">你好管理员，欢迎来到博客
+                    <a href="/admin">进入管理</a>
+                </div>
+                {% else %}
+                <div class="info">
+                    你好，欢迎来到博客
+                </div>
+                {% endif %}
+                <button class="logout">退出</button>
+            </div>
+            {% else %}
+            <div class="registerInfo">
+                <form>
+                    <p class="infoTitle">注册</p>
+                    <div class="inputInfo">
+                        <label for="user">用户名</label>
+                        <input type="text" name="username" id="user">
+                    </div>
+                    <div class="inputInfo">
+                        <label for="pwd">密码</label>
+                        <input type="password" name="pwd" id="pwd">
+                    </div>
+                    <div class="inputInfo">
+                        <label for="rpwd">确认</label>
+                        <input type="password" name="rpwd" id="rpwd">
+                    </div>
+                    <div class="infoBtn">
+                        <input type="button" name="" value="注册" class="registerBtn">
+                    </div>
+                    <div class="infoBtn">
+                        <span>已有账号</span>
+                        <a href="javascript:void(0)" class="toLogin">马上登录</a>
+                    </div>
+                    <div class="registerRemind"></div>
+                </form>
+            </div>
+            <div class="hide loginInfo">
+                <form>
+                    <p class="infoTitle">登录</p>
+                    <div class="inputInfo">
+                        <label for="user2">用户名</label>
+                        <input type="text" name="user2" id="user2">
+                    </div>
+                    <div class="inputInfo">
+                        <label for="pwd2">密码</label>
+                        <input type="password" name="pwd2" id="pwd2">
+                    </div>
+                    <div class="infoBtn">
+                        <input type="button" name="" value="登录" class="loginBtn">
+                    </div>
+                    <div class="infoBtn">
+                        <span>还没注册</span>
+                        <a href="javascript:void(0)" class="toRegister">马上注册</a>
+                    </div>
+                    <div class="loginRemind"></div>
+                </form>
+            </div>
+            {% endif %}
+            <div>
+                <p class="infoTitle">社区</p>
+                <ul>
+                    <li>
+                        <a href="">制度规则</a>
+                    </li>
+                    <li>
+                        <a href="">社区之家</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

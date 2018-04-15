@@ -14,11 +14,13 @@
 }
 .wrap {
 	width: 100%;
+	text-align: center;
 }
 .header {
 	height: 50px;
 	background-color: #eae3e3;
 	box-shadow: 5px 5px 5px #c3baba;
+	    margin-bottom: 20px;
 }
 .header > ul {
 	text-align: center;
@@ -102,4 +104,8 @@
     text-align: center;
     font-size: 13px;
     margin-top: 10px;
+}
+.focus {
+	color: #000!important;
+	font-weight: bolder;
 }

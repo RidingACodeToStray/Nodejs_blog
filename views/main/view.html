@@ -1,0 +1,52 @@
+{% extends 'layout.html' %} {% block content %}
+<div style="display: inline-block;vertical-align: top;background-color: #eae3e3;padding: 10px;box-shadow: 5px 5px 5px #c3baba;width: calc(100% - 250px);">
+    <h2>{{content.title}}</h2>
+            <div>
+                <span>
+                                <span>作者：</span><a href="">{{content.user.username}}</a>
+                </span>
+                <span>
+                                <span>时间：</span><a href="">{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</a>
+                </span>
+                <span>
+                                <span>阅读：</span><a href="">{{content.views}}</a>
+                </span>
+                <span>
+                                <span>评论：</span><a href="">{{content.comments.length}}</a>
+                </span>
+            </div>
+            <div style="text-align: left;margin-top: 10px;">
+                {{content.content}}
+            </div>
+    <div class="pinglun" style="margin-top: 20px;">
+        <div>
+            <strong style="float: left;margin-left: 10px;">评论区</strong>
+            <span style="float: right;margin-right: 10px;">一共有<span class="pinglunshu"></span>条评论</span>
+        </div>
+        {% if userInfo._id %}
+        <div style="text-align: left;">
+            <textarea rows="3" style="width: calc(100% - 100px)" class="neirong"></textarea>
+            <input type="hidden" id="contentId" value="{{content.id}}">
+            <button style="width: 50px;vertical-align: text-bottom;" class="commentBtn">提交</button>
+        </div>
+        {% else %}
+        <div style="text-align: center;padding-top: 30px;font-weight: bold;">您还没有登录，请先
+            <a href="">登录</a>
+        </div>
+        {% endif %}
+        <!-- <p style="text-align:left;">还没有留言</p> -->
+        <ul style="text-align: left;" class="megList"></ul>
+        <div class="a-page">
+            <span class="pre">
+                <a href="javascript:void(0)">上一页</a>
+            </span>
+            <span class="a-pageInfo"></span> 
+            <span class="next">
+                <a href="javascript:void(0)">下一页</a>
+            </span>
+        </div>
+    </div>
+
+</div>
+<script src="/public/js/comment.js"></script>
+{% endblock %}
